@@ -1,4 +1,5 @@
 ﻿
+using System.Runtime.CompilerServices;
 using ConstSize;
 
 using Size0 = ConstSize.Z;
@@ -18,7 +19,7 @@ internal class Program
 
 
         var z = a.Zip(b);
-        Console.WriteLine(z);
+        Show(z);
 
         // ERROR:  var x = a.Zip(c);
         // Console.WriteLine(c);
@@ -26,12 +27,22 @@ internal class Program
 
         // FixedSizeVector<int, Sum<Size2, Size3>
         var y = b.Concat(c);
-        Console.WriteLine(y);
+        Show(y);
 
         var d = new FixedSizeVector<int, Size5>(1, 2, 3, 4, 5);
         // ERROR: var x = y.Zip(d);
         // even though y's type FixedSizeVector<int, Sum<Size2, Size3>
         // and d's type FixedSizeVector<int, Size5 both represent a vector of size 5, 
-        // C# doesn't know the sizes are the same.
+        // C# doesn't know the sizes are the same because Sum<Size2,Size3> != Size5 == S<S<S<S<S<Z>>>>>
+        // even though both types static .Value propert returns 5.
+
+        Show(Sum<Size2, Size3>.Value);
+        Show(Size5.Value);
+
+    }
+
+    private static void Show(object value, [CallerArgumentExpression("value")] string? arg = null)
+    {
+        Console.WriteLine("{0} = {1}", arg, value);
     }
 }
