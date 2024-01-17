@@ -27,11 +27,10 @@ public static class Extensions
         return new FixedSizeVector<(A, B), TSize>(a.Items.Zip(b.Items, (a, b) => (a, b)));
     }
 
-    public static FixedSizeVector<T, TSizeC> Concat<T, TSizeA, TSizeB, TSizeC>(this FixedSizeVector<T, TSizeA> a, FixedSizeVector<T, TSizeB> b)
+    public static FixedSizeVector<T, Sum<TSizeA, TSizeB>> Concat<T, TSizeA, TSizeB>(this FixedSizeVector<T, TSizeA> a, FixedSizeVector<T, TSizeB> b)
         where TSizeA : IConstSize
         where TSizeB : IConstSize
-        where TSizeC : IConstSize
     {
-        return new FixedSizeVector<T, TSizeC>(a.Items.Concat(b.Items));
+        return new FixedSizeVector<T, Sum<TSizeA, TSizeB>>(a.Items.Concat(b.Items));
     }
 }

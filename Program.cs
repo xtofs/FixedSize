@@ -13,13 +13,17 @@ internal class Program
     {
         var a = new FixedSizeVector<string, Size2>("a", "b");
         var b = new FixedSizeVector<int, Size2>(1, 2);
-        var c = new FixedSizeVector<int, Size3>(1, 2, 4);
+        var c = new FixedSizeVector<int, Size3>(1, 2, 3);
 
 
         var z = a.Zip(b);
         Console.WriteLine(z);
 
-        //   var x = a.Zip(c);
+        // ERROR:  var x = a.Zip(c);
         // Console.WriteLine(c);
+
+
+        var y = b.Concat(c);
+        Console.WriteLine(y);
     }
 }
