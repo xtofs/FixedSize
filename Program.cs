@@ -31,6 +31,7 @@ internal class Program
         var d = new FixedSizeVector<int, Size5>(1, 2, 3, 4, 5);
         // ERROR: var x = y.Zip(d);
         // even though y's type FixedSizeVector<int, Sum<Size2, Size3>
-        // and d's type Size5 both represent size 5, C# doesn't know they are identical.
+        // and d's type FixedSizeVector<int, Size5 both represent a vector of size 5, 
+        // C# doesn't know the sized are the same.
     }
 }
