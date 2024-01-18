@@ -1,6 +1,5 @@
 ﻿
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using ConstSize;
 
 using Size0 = ConstSize.Z;
@@ -14,7 +13,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var a = new FixedSizeVector<string, Size2>("a", "b");
+        var a = new FixedSizeVector<string, Size2>("a", "b"); // the number of argument is only checked at runtime
         var b = new FixedSizeVector<int, Size2>(1, 2);
         var c = new FixedSizeVector<int, Size3>(3, 4, 5);
 
