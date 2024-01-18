@@ -29,8 +29,8 @@ internal class Program
         var d = new FixedSizeVector<int, Size5>(1, 2, 3, 4, 5);
         // ERROR: var x = y.Zip(d);
         // even though y's type FixedSizeVector<int, Sum<Size2, Size3>
-        // and d's type FixedSizeVector<int, Size5 both represent a vector of size 5, 
-        // C# doesn't know the sizes are the same because Sum<Size2,Size3> != Size5 == S<S<S<S<S<Z>>>>>
+        // and d's type FixedSizeVector<int, Size5> both represent a vector of size 5, 
+        // C# doesn't know the sizes are the same because Sum<Size2,Size3> != Size5 (Size5 == S<S<S<S<S<Z>>>>>)
         // even though both types static .Value propert returns 5.
 
         Debug.Assert(5 == Sum<Size2, Size3>.Value);
