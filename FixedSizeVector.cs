@@ -2,7 +2,7 @@
 namespace ConstSize;
 
 
-public class FixedSizeVector<TItem, TSize> where TSize : IConstSize
+public class FixedSizeVector<TItem, TSize> where TSize : IConst
 {
     public FixedSizeVector(params TItem[] items) { Items = items; }
 
@@ -22,14 +22,14 @@ public static class Extensions
 {
 
     public static FixedSizeVector<(A, B), TSize> Zip<A, B, TSize>(this FixedSizeVector<A, TSize> a, FixedSizeVector<B, TSize> b)
-        where TSize : IConstSize
+        where TSize : IConst
     {
         return new FixedSizeVector<(A, B), TSize>(a.Items.Zip(b.Items, (a, b) => (a, b)));
     }
 
     public static FixedSizeVector<T, Sum<TSizeA, TSizeB>> Concat<T, TSizeA, TSizeB>(this FixedSizeVector<T, TSizeA> a, FixedSizeVector<T, TSizeB> b)
-        where TSizeA : IConstSize
-        where TSizeB : IConstSize
+        where TSizeA : IConst
+        where TSizeB : IConst
     {
         return new FixedSizeVector<T, Sum<TSizeA, TSizeB>>(a.Items.Concat(b.Items));
     }
